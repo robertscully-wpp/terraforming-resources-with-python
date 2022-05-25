@@ -2,7 +2,7 @@ import logging
 import requests
 import argparse
 
-parser = argparse.ArgumentParser(formatter_class=argparse.MetavarTypeHelpFormatter, description='Process some integers.')
+parser = argparse.ArgumentParser(formatter_class=argparse.MetavarTypeHelpFormatter, description='Export TfE/TfC resources in a form to be managed by tfe provider.')
 parser.add_argument('--bearer_token', type=str, help='Bearer token for TfE/TfC')
 parser.add_argument('--hostname', type=str, help='URL for target terraform')
 parser.add_argument('--org', type=str, help='Organization to interact with', nargs='*', default=[], required=False)
