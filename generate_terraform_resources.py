@@ -17,6 +17,11 @@ WORKSPACE_HEREDOC="""resource "tfe_workspace" "{workspace_name}" {{
 }}
 """
 
+REPORT_HEREDOC="""#########################
+  Total: {count} {resource}
+##############################
+"""
+
 def generate_headers(bearer_token):
     headers={'Authorization': 'BEARER ' + bearer_token}
     return headers
@@ -59,7 +64,7 @@ def main():
             workspaces.extend(get_workspaces_for_org(url, headers, org_id))
         
         generateTerraformWorkspacesFile(workspaces)
-        print (len(workspaces))
+        print(REPORT_HEREDOC.format(count=len(workspaces), resource='workspaces'))
     elif args.command=='teams':
         print ("teams is not implemented.")
     else:
