@@ -51,14 +51,10 @@ def verified_email_domain(email):
         return True
         
 def get_users(hostname, headers):
-    # Gets all the users, who are active, i.e. not suspended
-    # Also It returns user details if they are from OpCo. 
-
     users=requests.get(url=f'{hostname}/admin/users?filter[suspended]=false', headers=headers).json().get('data')
     verified_users=[]
     for user in users:
         if verified_email_domain (user['attributes']['email']) :
-            #verified_users.append(user['id']+","+user['attributes']['email'])
             verified_users.append(user['id']+","+user['attributes']['email'])
     return verified_users
 
@@ -79,8 +75,6 @@ def get_teams(hostname, headers):
     return verified_teams
 
 def get_all_users_no_filter(hostname, headers):
-    # Gets all the users, who are active, i.e. not suspended
-    # Also It returns user details if they are from OpCo. 
     users=requests.get(url=f'{hostname}/admin/users', headers=headers).json().get('data')
     verified_users=[]
     for user in users:
